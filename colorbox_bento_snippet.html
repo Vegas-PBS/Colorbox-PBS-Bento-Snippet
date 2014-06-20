@@ -1,0 +1,80 @@
+{% load sekizai_tags %}
+{% load filertags %}
+
+<!-- SmartSnippets Variables
+1_popup_image=ImageField
+2_popup_url=TextField
+3_popup_track_source=TextField
+4_popup_track_medium=TextField
+5_popup_track_campaign=TextField
+-->
+
+<style type="text/css">
+#closeVPBS {
+	font-size: 14px;
+	float: right;
+	font-weight: bold;
+	padding-top: 1px;
+	color: #fc4f00;
+	padding-right: 5px;
+}
+</style>
+<link rel="stylesheet" href="http://pbs.bento.storage.s3.amazonaws.com/hostedbento-prod/filer_public/vegas-pbs/cbox/res/colorbox.css" />
+{% addtoblock "js" %}
+<script type="text/javascript" src="http://pbs.bento.storage.s3.amazonaws.com/hostedbento-prod/filer_public/vegas-pbs/cbox/res/jquery.colorbox-min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function()
+{
+
+if($.browser.version == '8.0')
+{ 
+   
+if (document.documentElement.clientWidth > 640) {
+$(document).ready(function(){
+     setTimeout(function() {
+        $.fn.colorbox({html:'<div style="width:800px;height:525px;"><a href="{{2_popup_url}}?utm_source={{3_popup_track_source}}&utm_medium={{4_popup_track_medium}}&utm_campaign={{5_popup_track_campaign}}"><img src="{{1_popup_image}}" style="width:800px;height:500spx;" alt="Thank you for supporting Vegas PBS." /></a><br><div id="closeVPBS"><a onclick="parent.$.fn.colorbox.close();" target="_top"><strong>Close window.</strong></a> </div> </div>', open:true});
+    }, 0);
+});
+
+}
+}
+});
+</script>
+
+<script type="text/javascript"> 
+    
+    // Make ColorBox responsive
+	jQuery.colorbox.settings.maxWidth  = '95%';
+	jQuery.colorbox.settings.maxHeight = '95%';
+
+	// ColorBox resize function
+	var resizeTimer;
+	function resizeColorBox()
+	{
+		if (resizeTimer) clearTimeout(resizeTimer);
+		resizeTimer = setTimeout(function() {
+				if (jQuery('#cboxOverlay').is(':visible')) {
+						jQuery.colorbox.load(true);
+				}
+		}, 300);
+	}
+
+	// Resize ColorBox when resizing window or changing mobile device orientation
+	jQuery(window).resize(resizeColorBox);
+	window.addEventListener("orientationchange", resizeColorBox, false);
+	
+    
+if (document.documentElement.clientWidth > 640) {
+$(document).ready(function(){
+     setTimeout(function() {
+       $.fn.colorbox({html:'<div style="width:800px;height:525px;"><a href="{{2_popup_url}}?utm_source={{3_popup_track_source}}&utm_medium={{4_popup_track_medium}}&utm_campaign={{5_popup_track_campaign}}"><img src="{{1_popup_image}}" style="width:800px;height:500spx;" alt="Thank you for supporting Vegas PBS." /></a><br><div id="closeVPBS"><a onclick="parent.$.fn.colorbox.close();" target="_top"><strong>Close window.</strong></a> </div> </div>', open:true});
+    }, 0);
+});
+
+}
+
+</script>
+    
+{% endaddtoblock %}
