@@ -1,0 +1,18 @@
+#Exclude the .htacess file
+.htaccess
+
+#Exclude any PSD/AI source
+*.psd
+*.ai
+
+#Text File
+*.txt
+#Except Read me file
+!README.txt
+
+# Except log files
+*.log
+
+#Exclude fonts
+_fonts/
+
